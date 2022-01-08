@@ -104,10 +104,10 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1vh;
+  margin-bottom: 0vh;
 
-  width: 12rem;
-  height: 12rem;
+  width: 10rem;
+  height: 10rem;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #D5A56C;
@@ -117,13 +117,13 @@ a{
 
 .logoImage{
 
-  height: 15vh;
+  height: 7rem;
 
  
 }
 
 form {
-  margin-top: 4vh;
+  margin-top: 2vh;
   
   
   text-align: center;
@@ -139,7 +139,7 @@ input{
   height: 5vh;
 
   margin-left: 2vw;
-  margin-top: 2vh;
+  margin-top: 1vh;
   border:1px solid #D5A56C;
   
 }
@@ -148,7 +148,7 @@ input{
   height: 5vh;
 
   padding: 1vh;
-  margin-top: 2vh;
+  margin-top: 1vh;
   border: 1px solid #D5A56C;
 
   border-radius: 39px;
@@ -166,11 +166,11 @@ input{
 .ini-sesion{
 
   width: 70vw;
-  height: 6vh;
+  height: 5vh;
 
   background-color: #5B3405;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 
   margin-top: 3vh;
