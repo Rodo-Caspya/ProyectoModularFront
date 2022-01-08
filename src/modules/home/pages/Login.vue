@@ -1,16 +1,16 @@
 <template>
 
-  <form action="" @submit.prevent="onSubmit">
+  <form action="" v-on:submit.prevent="login">
     <div class="logoContainer">
       <img class="logoImage" src="@/../public/images/logoLogin.png" alt="">
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="loginForm.user" type="text" placeholder="Nombre de usuario">
+      <input v-model="this.username" type="text" placeholder="Nombre de usuario">
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/candado.svg" alt="">
-      <input v-model="loginForm.password" type="password" placeholder="Contraseña">
+      <input v-model="this.password" type="password" placeholder="Contraseña">
     </div>
     
     
@@ -28,29 +28,49 @@
 </template>
 
 <script>
-
-import { ref } from 'vue'
+import axios from 'axios'
 import { defineAsyncComponent } from 'vue'
 
 export default {
+  name: "Login",
   components: { 
         Footer: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Footer'))
-  },    
-  setup() {
-      const loginForm = ref({
-        user: "",
-        password: ""
-      })
-
-      return {
-        loginForm,
-
-        onSubmit: async() => {
-          console.log(loginForm.value)
+  },
+  data: function() {
+    return{
+        username: "",
+        password: "",
+        error: false,
+        errorMsg: "",
+        userToken: ""
+    }
+  },
+  methods:{
+    // Método para realizar la autenticación del usuario con la base de datos
+    login(){
+      //Creamos un Json con el cual le mandaremos los datos a la base de Datos
+      let json = {
+        "username" : this.username,
+        "password" : this.password
+      };
+      //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
+      axios.post('http://localhost:9000/users/login', json).then(data => {
+        console.log(data);
+        if(data.data.status == "Login Successful"){
+          this.userToken = data.data.token;
+          console.log(this.userToken);
+          /**
+           * Inserte redirección al Main
+           * Y creaciones de sesión
+           */
         }
-      }
+        else{
+          this.error = true;
+          this.errorMsg = data.data.status + data.data.err.message;
+        }
+      })
+    }
   }
-  
 }
 </script>
 
