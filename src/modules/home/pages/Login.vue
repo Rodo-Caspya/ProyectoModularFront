@@ -67,6 +67,7 @@ export default {
         else{
           this.error = true;
           this.errorMsg = data.data.status + data.data.err.message;
+          
         }
       })
     }

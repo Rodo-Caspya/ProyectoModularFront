@@ -4,7 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-const loginModule = {
+const homeModule = {
 
     namespaced: true,//encapsular el store
     mutations,
@@ -13,4 +13,4 @@ const loginModule = {
     state
 }
 
-export default loginModule
+export default homeModule
