@@ -1,5 +1,5 @@
 <template>
-    <h1>Main</h1>
+    <h1>Bienvenido {{username}}</h1>
 
     <h2>Pregunta</h2>
     <div class="Questions">
@@ -13,8 +13,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-    name: 'Main'
+    name: 'Main',
+    computed:{
+    ...mapState('homeModule',['username'])
+  }
 }
 </script>
 

@@ -6,27 +6,27 @@
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="this.firstName" type="text" placeholder="Nombre" required>
+      <input v-model="user.firstName" type="text" placeholder="Nombre" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="this.lastName" type="text" placeholder="Apellidos" required>
+      <input v-model="user.lastName" type="text" placeholder="Apellidos" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="this.email" type="email" placeholder="Email" required>
+      <input v-model="user.email" type="email" placeholder="Email" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="this.username" type="text" placeholder="Nombre de usuario" required>
+      <input v-model="user.username" type="text" placeholder="Nombre de usuario" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/candado.svg" alt="">
-      <input v-model="this.password" type="password" placeholder="Contraseña" required>
+      <input v-model="user.password" type="password" placeholder="Contraseña" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/candado.svg" alt="">
-      <input v-model="this.passwordConfirmation" type="password" placeholder="Confirmar contraseña" required>
+      <input v-model="user.passwordConfirmation" type="password" placeholder="Confirmar contraseña" required>
     </div>
     
     
@@ -43,7 +43,7 @@
 
 
 <script>
-import axios from 'axios'
+
 import { defineAsyncComponent } from 'vue'
 
 export default {
@@ -51,44 +51,19 @@ export default {
   components: { 
         Footer: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Footer'))
   }, 
-  data: function() {
+  data () {
     return{
-        firstName: "",
-        lastName: "",
-        email: "",
-        username: "",
-        password: "",
-        passwordConfirmation: "",
-        error: false,
-        errorMsg: "",
-        userToken: ""
+        user:{}
     }
   },
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
     register(){
       //Creamos un Json con el cual le mandaremos los datos a la base de Datos
-      let json = {
-        "firstname" : this.firstName,
-        "lastname" : this.lastName,
-        "email": this.email,
-        "username" : this.username,
-        "password" : this.password
-      };
-      //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
-      axios.post('http://localhost:9000/users/signup', json).then(data => {
-        console.log(data);
-        if(data.data.status == "Registration Successful!"){
-          console.log("Registro exitoso!");
-          /**
-           * Inserte redirección al Login
-           */
-        }
-        else{
-          this.error = true;
-          this.errorMsg = data.data.err.message;
-        }
-      })
+      if(this.$store.dispatch('homeModule/register',this.user))
+        this.$router.push({name:'Login'})
+      
+      
     }
   }
 }

@@ -4,21 +4,12 @@
 
 // } 
 
-export const setUser = ( state , User )=>{
-    state.user = User
+export const setUser = ( state , user )=>{
+    state.username = user.username
+    state.userToken = user.userToken
+    state.userStatus = user.userStatus
 }
-export const setName = ( state , Name ) =>{
-    state.name = Name
+export const setUserR = ( state , user )=>{
+    state.username = user
 }
-export const setPassword = ( state , Password  )=>{
-    state.password = Password
-}
-export const setError = ( state , Error  )=>{
-    state.error = Error
-}
-export const setErrorMsg = ( state , ErrorMsg  )=>{
-    state.errorMsg = ErrorMsg
-}
-export const setSuccesMsg = ( state , SuccesMsg  )=>{
-    state.succesMsg = SuccesMsg
-}
+

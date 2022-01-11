@@ -6,13 +6,12 @@
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="this.username" type="text" placeholder="Nombre de usuario">
+      <input v-model="user.username" type="text" placeholder="Nombre de usuario">
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/candado.svg" alt="">
-      <input v-model="this.password" type="password" placeholder="Contraseña">
+      <input v-model="user.password" type="password" placeholder="Contraseña" >
     </div>
-    
     
     <div class="container">
       <button type="submit" class="ini-sesion">Iniciar sesion</button>
@@ -24,55 +23,36 @@
   </form>
 
   <Footer/>
-  
+
 </template>
 
 <script>
-import axios from 'axios'
-import { defineAsyncComponent } from 'vue'
 
+import { defineAsyncComponent } from 'vue'
+import {mapState} from 'vuex'
 export default {
   name: "Login",
   components: { 
         Footer: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Footer'))
   },
-  data: function() {
+  data() {
     return{
-        username: "",
-        password: "",
-        error: false,
-        errorMsg: "",
-        userToken: ""
+        user:{}
     }
   },
   methods:{
-    // Método para realizar la autenticación del usuario con la base de datos
     login(){
-      //Creamos un Json con el cual le mandaremos los datos a la base de Datos
-      let json = {
-        "username" : this.username,
-        "password" : this.password
-      };
-      //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
-      axios.post('http://localhost:9000/users/login', json).then(data => {
-        console.log(data);
-        if(data.data.status == "Login Successful"){
-          this.userToken = data.data.token;
-          console.log(this.userToken);
-          /**
-           * Inserte redirección al Main
-           * Y creaciones de sesión
-           */
-        }
-        else{
-          this.error = true;
-          this.errorMsg = data.data.status + data.data.err.message;
-          
-        }
-      })
-    }
+      if(this.$store.dispatch('homeModule/login',this.user))
+        this.$router.push({name:'Main'})
+      
+    },
+    
+  },
+  computed:{
+    ...mapState('homeModule',['userStatus','username'])
   }
-}
+  }
+
 </script>
 
 <style scoped>
