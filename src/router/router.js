@@ -29,6 +29,12 @@ const routes = [
         
     },
     { 
+        path: '/registerCow',
+        name: 'RegisterCow',
+        component: () => import(/* webpackChunkName: "AboutPage" */ '../modules/cows/pages/RegisterCow')
+        
+    },
+    { 
         path: '/:pathMatch(.*)*',
         component: () => import(/* webpackChunkName: "NotFoundPage" */ '@/modules/shared/pages/NotPageFound')
     },//pathMatch es una funcion del router para buscar cualquier ruta que no haga match
