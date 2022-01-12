@@ -8,15 +8,35 @@
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.edad" type="number" placeholder="Edad" required>
+      <input v-model="cow.edad" type="text" placeholder="Edad" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.alimentacion" type="text" placeholder="Alimentacion" required>
+      <input v-model="cow.status" type="text" placeholder="Status" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.medidas" type="text" placeholder="Medidas" required>
+      <input v-model="cow.alimentacion.cms" type="text" placeholder="Cms" required>
+    </div>
+    <div class="container-inputs">
+      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      <input v-model="cow.alimentacion.proteinas" type="text" placeholder="Proteinas" required>
+    </div>
+    <div class="container-inputs">
+      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      <input v-model="cow.alimentacion.minerales" type="number" placeholder="Minerales" required>
+    </div>
+    <div class="container-inputs">
+      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      <input v-model="cow.alimentacion.fibra" type="text" placeholder="Fibra" required>
+    </div>
+    <div class="container-inputs">
+      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      <input v-model="cow.medidas.cc" type="text" placeholder="CC" required>
+    </div>
+    <div class="container-inputs">
+      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      <input v-model="cow.medidas.phurinario" type="text" placeholder="PhUrinario" required>
     </div>
     
     <div class="container">
@@ -29,21 +49,24 @@
 
 <script>
 
-
-
 export default {
   //Importamos los componentes que necesitaremos, en este caso únicamente el componente Footer
   components: { 
   }, 
   data () {
     return{
-        cow:{}
+        cow:{
+          alimentacion:{
+
+          },
+          medidas:{
+          },
+        }
     }
   },
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
     register(){
-        console.log('hola');
       //Creamos un Json con el cual le mandaremos los datos a la base de Datos
       this.$store.dispatch('cowModule/registerCow',this.cow)
         // this.$router.push({name:'Login'})

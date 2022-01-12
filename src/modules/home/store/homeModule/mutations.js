@@ -10,6 +10,11 @@ export const setUser = ( state , user )=>{
     state.userStatus = user.userStatus
 }
 export const setUserR = ( state , user )=>{
-    state.username = user
+    state.status = user
 }
+export const setError = ( state , error )=>{
+    state.error = error.error,
+    state.errorMsg = error.errorMsg
+}
+
 

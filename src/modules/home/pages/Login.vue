@@ -1,4 +1,5 @@
 <template>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <form action="" v-on:submit.prevent="login">
     <div class="logoContainer">
@@ -13,6 +14,10 @@
       <input v-model="user.password" type="password" placeholder="Contraseña" >
     </div>
     
+    <div class="alert alert-danger" role="alert" v-if="this.error">
+      {{this.errorMsg}}
+    </div>
+
     <div class="container">
       <button type="submit" class="ini-sesion">Iniciar sesion</button>
     </div>
@@ -42,14 +47,18 @@ export default {
   },
   methods:{
     login(){
-      if(this.$store.dispatch('homeModule/login',this.user))
-        this.$router.push({name:'Main'})
-      
+      this.$store.dispatch('homeModule/login',this.user);
+      if(this.userToken != ''){
+        this.$router.push({name:'RegisterCow'})
+      }
+      else{
+        console.log("Error al Iniciar Sesion.")
+      }
     },
     
   },
   computed:{
-    ...mapState('homeModule',['userStatus','username'])
+    ...mapState('homeModule',['userStatus','username','userToken','error','errorMsg'])
   }
   }
 

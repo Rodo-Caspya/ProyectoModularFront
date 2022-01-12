@@ -12,11 +12,12 @@ export default() => ({
     // username: "",
     // password: "",
     // passwordConfirmation: "",
-    // error: false,
-    // errorMsg: "",
+    error: false,
+    errorMsg: "",
     // userToken: ""
     username:'',
     userToken:'',
-    userStatus:null
+    userStatus:null,
+    status: ''
     
 })

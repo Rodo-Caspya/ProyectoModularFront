@@ -1,4 +1,5 @@
 <template>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <form action="" v-on:submit.prevent="register">
     <div class="logoContainer">
@@ -28,6 +29,13 @@
       <img class ="img-input" src="@/../public/images/candado.svg" alt="">
       <input v-model="user.passwordConfirmation" type="password" placeholder="Confirmar contraseña" required>
     </div>
+
+    <div class="alert alert-success" role="alert" v-if="this.status == 'Registration Successful!'">
+      {{this.status}}
+    </div>
+    <div class="alert alert-danger" role="alert" v-if="this.error">
+      {{this.errorMsg}}
+    </div>
     
     
     <div class="container">
@@ -45,6 +53,7 @@
 <script>
 
 import { defineAsyncComponent } from 'vue'
+import { mapState } from 'vuex';
 
 export default {
   //Importamos los componentes que necesitaremos, en este caso únicamente el componente Footer
@@ -59,12 +68,23 @@ export default {
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
     register(){
-      //Creamos un Json con el cual le mandaremos los datos a la base de Datos
-      if(this.$store.dispatch('homeModule/register',this.user))
-        this.$router.push({name:'Login'})
-      
-      
+      if(this.user.password == this.user.passwordConfirmation){
+        this.$store.dispatch('homeModule/register',this.user);
+        if(this.status == "Registration Successful!")
+        {
+          //this.$router.push({name:'Login'})
+        }
+        else{
+          console.log(this.errorMsg);
+        }
+      }
+      else{
+        console.log("Contrase;as distintas.")
+      }
     }
+  },
+  computed:{
+    ...mapState('homeModule',['status','error','errorMsg'])
   }
 }
 </script>

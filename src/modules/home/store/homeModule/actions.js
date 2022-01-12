@@ -13,17 +13,15 @@ export const login = async ({commit}, user) =>{
             username: user.username,
             userStatus: data.data.status
         }
-
         if(data.data.status == "Login Successful"){
-          commit('setUser',userDB)
-          /**
-           * Inserte redirección al Main
-           * Y creaciones de sesión
-           */
+          commit('setUser',userDB);
         }
         else{
-          this.error = true;
-          this.errorMsg = data.data.status + data.data.err.message;
+          let errorR = {
+            error: true,
+            errorMsg: data.data.err.message
+          }
+          commit('setError', errorR)
         }
       })
 }
@@ -31,19 +29,19 @@ export const login = async ({commit}, user) =>{
 export const register = async ({commit}, user) =>{
   //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
   axios.post('http://localhost:9000/users/signup', user).then(data => {
-    console.log(data,'gtgv');
-    let userR = user.username
-    console.log(userR);
+    console.log(data);
+    let userR = data.data.status
     if(data.data.status == "Registration Successful!"){
-      console.log("Registro exitoso!");
+      console.log("Registro exitoso!")
       commit('setUserR',userR)
-      /**
-       * Inserte redirección al Login
-       */
     }
     else{
-      this.error = true;
-      this.errorMsg = data.data.err.message;
+      let errorR = {
+        error: true,
+        errorMsg: data.data.err.message
+      }
+      commit('setError', errorR)
     }
+
   })
 }

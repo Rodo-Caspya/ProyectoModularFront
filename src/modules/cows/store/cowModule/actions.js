@@ -6,20 +6,15 @@ import axios from 'axios'
 // } 
 
 export const registerCow = async ({commit}, cow) =>{
-  console.log('hi');
-  console.log(cow);
   //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
-  axios.post('http://localhost:9000/vacas//ingresar', cow ).then(data => {
+  axios.post('http://localhost:9000/vacas/ingresar', cow ).then(data => {
+    console.log(data);
     // let userR = user.username
     // console.log(userR);
     let cowId = cow.id
-    
     if(data.status == "Successful"){
       console.log("Registro exitoso!");
       commit('setCow',cowId)
-      /**
-       * Inserte redirección al Login
-       */
     }
     else{
       this.error = true;
