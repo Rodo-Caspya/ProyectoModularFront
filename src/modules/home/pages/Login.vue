@@ -54,12 +54,12 @@ export default {
       else{
         console.log("Error al Iniciar Sesion.")
       }
-    },
-    
+    }
   },
   computed:{
     ...mapState('homeModule',['userStatus','username','userToken','error','errorMsg'])
-  }
+  },
+  
   }
 
 </script>

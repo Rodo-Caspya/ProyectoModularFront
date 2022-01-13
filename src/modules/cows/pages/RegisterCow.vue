@@ -12,7 +12,7 @@
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.status" type="text" placeholder="Status" required>
+      <input v-model="cow.estado" type="text" placeholder="Estado" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
@@ -28,15 +28,15 @@
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.alimentacion.fibra" type="text" placeholder="Fibra" required>
+      <input v-model="cow.alimentacion.fibra" type="number" placeholder="Fibra" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.medidas.cc" type="text" placeholder="CC" required>
+      <input v-model="cow.medidas.cc" type="number" placeholder="CC" required>
     </div>
     <div class="container-inputs">
       <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
-      <input v-model="cow.medidas.phurinario" type="text" placeholder="PhUrinario" required>
+      <input v-model="cow.medidas.phurinario" type="number" placeholder="PhUrinario" required>
     </div>
     
     <div class="container">
@@ -69,9 +69,6 @@ export default {
     register(){
       //Creamos un Json con el cual le mandaremos los datos a la base de Datos
       this.$store.dispatch('cowModule/registerCow',this.cow)
-        // this.$router.push({name:'Login'})
-      
-      
     }
   }
 }

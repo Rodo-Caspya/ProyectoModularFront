@@ -12,13 +12,16 @@ export const registerCow = async ({commit}, cow) =>{
     // let userR = user.username
     // console.log(userR);
     let cowId = cow.id
-    if(data.status == "Successful"){
+    if(data.data.status == "Successful"){
       console.log("Registro exitoso!");
       commit('setCow',cowId)
     }
     else{
-      this.error = true;
-      this.errorMsg = data.data.err.message;
+      let errorR = {
+        error: true,
+        errorMsg: data.data.err.message
+      }
+      commit('setError', errorR)
     }
   })
 }

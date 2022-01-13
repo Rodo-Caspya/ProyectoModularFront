@@ -4,17 +4,7 @@
 // })
 
 export default() => ({
-    // user: "",
-    // name: "",
-    // firstName: "",
-    // lastName: "",
-    // email: "",
-    // username: "",
-    // password: "",
-    // passwordConfirmation: "",
-    // error: false,
-    // errorMsg: "",
-    // userToken: ""
     idCow:'',
-    
+    error: false,
+    errorMsg: ''
 })
