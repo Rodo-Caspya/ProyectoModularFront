@@ -42,7 +42,7 @@
     </div>
     
     <div class="container">
-      <button @click="force" type="submit" class="ini-sesion"> ¡Registrar vaca! </button>
+      <button  type="submit" class="ini-sesion"> ¡Registrar vaca! </button>
     </div>
 
     <div class="alert alert-success" role="alert" v-if="this.idCow !=''">
@@ -76,9 +76,10 @@ export default {
   },
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
-    register(){
-      this.$store.dispatch('cowModule/registerCow',this.cow)//manda a llamar a la action de registrar vaca
+    async register(){
+      await this.$store.dispatch('cowModule/registerCow',this.cow)//manda a llamar a la action de registrar vaca
       if(this.idCow !=''){//valida el id de la vaca
+        this.force();
         console.log('Registro finalizado');
       }
       else{

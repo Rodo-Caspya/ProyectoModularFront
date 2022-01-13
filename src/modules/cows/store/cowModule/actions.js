@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export const registerCow = async ({commit}, cow) =>{//metodo asincrno para peticion https a registrar baca
   //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
-  axios.post('http://localhost:9000/vacas/ingresar', cow ).then(data => {
+  await axios.post('http://localhost:9000/vacas/ingresar', cow ).then(data => {
     console.log(data);
     // let userR = user.username
     // console.log(userR);
