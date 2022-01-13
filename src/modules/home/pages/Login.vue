@@ -1,4 +1,5 @@
 <template>
+<!-- codigo de la pagina(etiquetas, etc) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <form action="" v-on:submit.prevent="login">
@@ -47,29 +48,30 @@ export default {
     }
   },
   methods:{
-    async login(){
+    async login(){//manda a llamar a la action de login en el store
       await this.$store.dispatch('homeModule/login',this.user);
       if(this.userToken != ''){
-        this.$router.push({name:'RegisterCow'})
+        this.$router.push({name:'RegisterCow'})//redirecciona al registro de la vaca
       }
       else{
-        console.log("Error al Iniciar Sesion.")
+        console.log("Error al Iniciar Sesion.")//error cuando no se puede loguear
       }
     },
     force(){
-      location.reload()
+      location.reload()//froza la aplicacion a reiniciarse 
     }
   },
   computed:{
-    ...mapState('homeModule',['userStatus','username','userToken','error','errorMsg'])
+    ...mapState('homeModule',['userStatus','username','userToken','error','errorMsg'])//mapeo del state para obtener variables
   },
   
   }
 
 </script>
 
-<style scoped>
 
+<style scoped>
+/* estilos del component*/
 a{
   text-decoration: none;
 }

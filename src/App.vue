@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <Navbar/> -->
+    <!-- se monta el router view para el manejo de componentes -->
     <router-view/>
   </div>
 </template>

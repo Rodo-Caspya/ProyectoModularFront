@@ -1,4 +1,5 @@
 <template>
+<!-- codigo html de la pagina -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <form action="" v-on:submit.prevent="register">
@@ -58,7 +59,7 @@ import { mapState } from 'vuex';
 export default {
   //Importamos los componentes que necesitaremos, en este caso únicamente el componente Footer
   components: { 
-        Footer: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Footer'))
+        Footer: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Footer'))//manda a llamar al componente footer
   }, 
   data () {
     return{
@@ -68,7 +69,7 @@ export default {
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
     register(){
-      if(this.user.password == this.user.passwordConfirmation){
+      if(this.user.password == this.user.passwordConfirmation){//valida que las contraseñas sean las mismas
         this.$store.dispatch('homeModule/register',this.user);
         if(this.status == "Registration Successful!")
         {
@@ -84,13 +85,13 @@ export default {
     }
   },
   computed:{
-    ...mapState('homeModule',['status','error','errorMsg'])
+    ...mapState('homeModule',['status','error','errorMsg'])//mapea el estado de homeModule
   }
 }
 </script>
 
 <style scoped>
-
+/* estilosd del component */
 a{
   text-decoration: none;
 }

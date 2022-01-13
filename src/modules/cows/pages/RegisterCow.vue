@@ -1,5 +1,5 @@
 <template>
-
+<!-- codigo html de la pagina -->
   <form action="" v-on:submit.prevent="register">
     <div class="logoContainer">
       <img class="logoImage" src="@/../public/images/logoLogin.png" alt="">
@@ -65,7 +65,7 @@ export default {
   }, 
   data () {
     return{
-        cow:{
+        cow:{//cracion del json para mandar
           alimentacion:{
 
           },
@@ -77,9 +77,8 @@ export default {
   methods:{
     // Método para realizar el registro de un usuario en la base de datos
     register(){
-      //Creamos un Json con el cual le mandaremos los datos a la base de Datos
-      this.$store.dispatch('cowModule/registerCow',this.cow)
-      if(this.idCow !=''){
+      this.$store.dispatch('cowModule/registerCow',this.cow)//manda a llamar a la action de registrar vaca
+      if(this.idCow !=''){//valida el id de la vaca
         console.log('Registro finalizado');
       }
       else{
@@ -91,13 +90,13 @@ export default {
     }
   },
   computed:{
-    ...mapState('cowModule',['error','errorMsg','idCow'])
+    ...mapState('cowModule',['error','errorMsg','idCow'])//mapea el state de cowModule
   }
 }
 </script>
 
 <style scoped>
-
+/* estilos de la pagina */
 a{
   text-decoration: none;
 }

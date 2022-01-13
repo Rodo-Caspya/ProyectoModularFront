@@ -4,11 +4,11 @@
 
 // } 
 
-export const setCow = ( state , id )=>{
+export const setCow = ( state , id )=>{//mandar el id de la vaca al state
     state.idCow = id
 
 }
-export const setError = ( state , error )=>{
+export const setError = ( state , error )=>{//mandar error al registrar la vaca al state
     state.error = error.error,
     state.errorMsg = error.errorMsg
 }

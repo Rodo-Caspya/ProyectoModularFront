@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
+/*Rutas para el redireccionamiento entre componentes y paginas*/
 const routes = [
     {
         path:'/',

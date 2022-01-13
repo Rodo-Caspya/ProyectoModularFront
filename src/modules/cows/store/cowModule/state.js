@@ -3,7 +3,7 @@
 
 // })
 
-export default() => ({
+export default() => ({//state de registro de vacas
     idCow:'',
     error: false,
     errorMsg: ''

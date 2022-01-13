@@ -5,19 +5,19 @@ import axios from 'axios'
 
 // } 
 
-export const login = async ({commit}, user) =>{
+export const login = async ({commit}, user) =>{//metodo asincrono para peticin https
     await axios.post('http://localhost:9000/users/login', user).then(data => {
         console.log(data);
-        let userDB = {
+        let userDB = {//creacion de usuario
             userToken: data.data.token,
             username: user.username,
             userStatus: data.data.status
         }
-        if(data.data.status == "Login Successful"){
+        if(data.data.status == "Login Successful"){//validacion de la data 
           commit('setUser',userDB);
         }
         else{
-          let errorR = {
+          let errorR = {//creacion del error en caso de que la respuesta no sea exirtosa
             error: true,
             errorMsg: data.data.err.message
           }
@@ -26,23 +26,23 @@ export const login = async ({commit}, user) =>{
       })
 }
 
-export const register = async ({commit}, user) =>{
+export const register = async ({commit}, user) =>{//metodo asincrono para peticion htttps
   
   //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
-  axios.post('http://localhost:9000/users/signup', user).then(data => {
+  axios.post('http://localhost:9000/users/signup', user).then(data => {//peticion a la base de datos para registro
     console.log(data);
-    let errorR = {
+    let errorR = {//inicializacion del error
       error: false,
       errorMsg: ''   
     }
-    commit('setError', errorR)
+    commit('setError', errorR)//manda el error al state
     let userR = data.data.status
-    if(data.data.status == "Registration Successful!"){
+    if(data.data.status == "Registration Successful!"){//registro exitoso 
       console.log("Registro exitoso!")
       commit('setUserR',userR)
     }
     else{
-      let errorR = {
+      let errorR = {//creacion del error para mandar al state
         error: true,
         errorMsg: data.data.err.message
       }
