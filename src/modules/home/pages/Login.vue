@@ -14,7 +14,8 @@
       <input v-model="user.password" type="password" placeholder="Contraseña" >
     </div>
     
-    <div class="alert alert-danger" role="alert" v-if="this.error">
+    <div class="alertP alert alert-danger" role="alert" v-if="this.error">
+    <button @click="force" class="close">x</button>
       {{this.errorMsg}}
     </div>
 
@@ -46,14 +47,17 @@ export default {
     }
   },
   methods:{
-    login(){
-      this.$store.dispatch('homeModule/login',this.user);
+    async login(){
+      await this.$store.dispatch('homeModule/login',this.user);
       if(this.userToken != ''){
         this.$router.push({name:'RegisterCow'})
       }
       else{
         console.log("Error al Iniciar Sesion.")
       }
+    },
+    force(){
+      location.reload()
     }
   },
   computed:{
@@ -161,5 +165,34 @@ input{
   
 }
 
+.alertP{
+  width: 80vw;
+  height: 5vh;
+  
+  margin-left: 10.5vw;
+  margin-top: 1vh;
+}
+.close{
+  width: 1rem;
+  height: 1rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: absolute;
+  
+  top: 0vh;
+  right: 0vw;
+  
+  background-color: crimson;
+  color: white;
+  font-size: 20px;
+
+  margin-top: 1%;
+  margin-right: 1%;
+
+  border-radius: 2px;
+}
 </style>
 

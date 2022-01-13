@@ -6,7 +6,7 @@ import axios from 'axios'
 // } 
 
 export const login = async ({commit}, user) =>{
-    axios.post('http://localhost:9000/users/login', user).then(data => {
+    await axios.post('http://localhost:9000/users/login', user).then(data => {
         console.log(data);
         let userDB = {
             userToken: data.data.token,

@@ -1,41 +1,43 @@
 <template>
 
   <form action="" v-on:submit.prevent="register">
+    <div class="logoContainer">
+      <img class="logoImage" src="@/../public/images/logoLogin.png" alt="">
+    </div>
 
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
       <input v-model="cow.id" type="number" placeholder="ID" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.edad" type="text" placeholder="Edad" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.estado" type="text" placeholder="Estado" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.alimentacion.cms" type="text" placeholder="Cms" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.alimentacion.proteinas" type="text" placeholder="Proteinas" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.alimentacion.minerales" type="number" placeholder="Minerales" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.alimentacion.fibra" type="number" placeholder="Fibra" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.medidas.cc" type="number" placeholder="CC" required>
     </div>
     <div class="container-inputs">
-      <img class ="img-input" src="@/../public/images/usuario.svg" alt="">
+      
       <input v-model="cow.medidas.phurinario" type="number" placeholder="PhUrinario" required>
     </div>
     
@@ -84,7 +86,7 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0vh;
+  margin-bottom: 2vh;
 
   width: 10rem;
   height: 10rem;
@@ -121,6 +123,7 @@ input{
   margin-left: 2vw;
   margin-top: 1vh;
   border:1px solid #D5A56C;
+  border-radius: 20px;
   
 }
 .img-input {
