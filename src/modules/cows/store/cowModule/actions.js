@@ -19,7 +19,7 @@ export const registerCow = async ({commit}, cow) =>{
     else{
       let errorR = {
         error: true,
-        errorMsg: data.data.err.message
+        errorMsg: data.data.message
       }
       commit('setError', errorR)
     }

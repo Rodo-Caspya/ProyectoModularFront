@@ -27,9 +27,15 @@ export const login = async ({commit}, user) =>{
 }
 
 export const register = async ({commit}, user) =>{
+  
   //Con el Método Post con Axios hacemos el request al servidor de la base de Datos
   axios.post('http://localhost:9000/users/signup', user).then(data => {
     console.log(data);
+    let errorR = {
+      error: false,
+      errorMsg: ''   
+    }
+    commit('setError', errorR)
     let userR = data.data.status
     if(data.data.status == "Registration Successful!"){
       console.log("Registro exitoso!")

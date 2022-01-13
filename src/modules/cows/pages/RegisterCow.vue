@@ -42,7 +42,14 @@
     </div>
     
     <div class="container">
-      <button type="submit" class="ini-sesion"> ¡Registrar vaca! </button>
+      <button @click="force" type="submit" class="ini-sesion"> ¡Registrar vaca! </button>
+    </div>
+
+    <div class="alert alert-success" role="alert" v-if="this.idCow !=''">
+      Registro exitoso
+    </div>
+    <div class="alert alert-danger" role="alert" v-if="this.error">
+      {{this.errorMsg}}
     </div>
 
   </form>
@@ -50,6 +57,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   //Importamos los componentes que necesitaremos, en este caso únicamente el componente Footer
@@ -71,7 +79,19 @@ export default {
     register(){
       //Creamos un Json con el cual le mandaremos los datos a la base de Datos
       this.$store.dispatch('cowModule/registerCow',this.cow)
+      if(this.idCow !=''){
+        console.log('Registro finalizado');
+      }
+      else{
+        console.log(this.errorMsg);
+      }
+    },
+    force(){
+      location.reload()
     }
+  },
+  computed:{
+    ...mapState('cowModule',['error','errorMsg','idCow'])
   }
 }
 </script>
